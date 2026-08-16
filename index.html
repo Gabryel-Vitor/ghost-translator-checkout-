@@ -53,6 +53,7 @@
 
     var params = new URLSearchParams(window.location.search);
     var userId = params.get("user_id");
+    var email = params.get("email") || undefined;
 
     var statusEl = document.getElementById("status");
     var spinnerEl = document.getElementById("spinner");
@@ -79,6 +80,10 @@
           // pertence — a Paddle ecoa esse dado em todo evento futuro
           // relacionado a essa assinatura.
           customData: { user_id: userId },
+          // Pré-preenche o campo de e-mail com o mesmo e-mail da conta
+          // logada na extensão (só conveniência — quem identifica o
+          // usuário de verdade é o customData acima, não isso).
+          customer: email ? { email: email } : undefined,
           settings: {
             displayMode: "overlay",
             theme: "dark"
