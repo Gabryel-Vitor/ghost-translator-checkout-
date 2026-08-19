@@ -44,12 +44,30 @@
   </div>
 
   <script>
-    // ⚙️ AMBIENTE ATUAL: SANDBOX. Quando formos pra produção, troca os 3
-    // valores abaixo pelos equivalentes "live" (Paddle.Environment.set
-    // deixa de ser chamado nesse caso — live é o padrão).
-    var AMBIENTE = "sandbox";
-    var PRICE_ID_MENSAL = "pri_01m04273jpbxz0d20fcn3jtx9y";
-    var CLIENT_TOKEN = "test_932d3f23b2a251ca9ace14b6c4d";
+    // ⚙️ AMBIENTE ATUAL: ainda SANDBOX. Só troca pra "live" quando TODOS os
+    // itens abaixo estiverem prontos (senão o checkout live vai falhar
+    // pro cliente de verdade):
+    //   1) domínio (gabryel-vitor.github.io) aparecer como "Approved"
+    //      (não "Pending") em Checkout > Request domain approval, no
+    //      painel LIVE (vendors.paddle.com, sem "sandbox-")
+    //   2) conta tiver passado pela verificação de negócio da Paddle
+    //   3) "Default payment link" e métodos de pagamento configurados
+    //      no painel live
+    //   4) dados bancários (Payout settings) preenchidos
+    var AMBIENTE = "sandbox"; // troca pra "live" só depois dos 4 itens acima
+
+    var CONFIG = {
+      sandbox: {
+        priceIdMensal: "pri_01m04273jpbxz0d20fcn3jtx9y",
+        clientToken: "test_932d3f23b2a251ca9ace14b6c4d",
+      },
+      live: {
+        priceIdMensal: "pri_01m00v70qz0ex19zbeny89s31t",
+        clientToken: "live_44b9d93c42c66c7a511871d4730",
+      },
+    };
+
+    var cfg = CONFIG[AMBIENTE];
 
     var params = new URLSearchParams(window.location.search);
     var userId = params.get("user_id");
@@ -71,11 +89,13 @@
         if (AMBIENTE === "sandbox") {
           Paddle.Environment.set("sandbox");
         }
+        // Se AMBIENTE === "live", não chama Environment.set — live é o
+        // padrão do Paddle.js quando nada é setado.
 
-        Paddle.Initialize({ token: CLIENT_TOKEN });
+        Paddle.Initialize({ token: cfg.clientToken });
 
         Paddle.Checkout.open({
-          items: [{ priceId: PRICE_ID_MENSAL, quantity: 1 }],
+          items: [{ priceId: cfg.priceIdMensal, quantity: 1 }],
           // Isso é o que faz o webhook saber a qual usuário essa assinatura
           // pertence — a Paddle ecoa esse dado em todo evento futuro
           // relacionado a essa assinatura.
