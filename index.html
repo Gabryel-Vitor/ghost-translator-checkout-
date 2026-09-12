@@ -62,17 +62,11 @@
   </footer>
 
   <script>
-    // ⚙️ AMBIENTE ATUAL: ainda SANDBOX. Só troca pra "live" quando TODOS os
-    // itens abaixo estiverem prontos (senão o checkout live vai falhar
-    // pro cliente de verdade):
-    //   1) domínio (gabryel-vitor.github.io) aparecer como "Approved"
-    //      (não "Pending") em Checkout > Request domain approval, no
-    //      painel LIVE (vendors.paddle.com, sem "sandbox-")
-    //   2) conta tiver passado pela verificação de negócio da Paddle
-    //   3) "Default payment link" e métodos de pagamento configurados
-    //      no painel live
-    //   4) dados bancários (Payout settings) preenchidos
-    var AMBIENTE = "sandbox"; // troca pra "live" só depois dos 4 itens acima
+    // ⚙️ AMBIENTE ATUAL: LIVE (produção). Confirmado que o Paddle já está
+    // com domínio aprovado, verificação de negócio feita, métodos de
+    // pagamento e payout settings configurados no painel live
+    // (vendors.paddle.com, sem "sandbox-").
+    var AMBIENTE = "live";
 
     var CONFIG = {
       sandbox: {
@@ -81,7 +75,7 @@
       },
       live: {
         priceIdMensal: "pri_01m00v70qz0ex19zbeny89s31t",
-        clientToken: "live_44b9d93c42c66c7a511871d4730",
+        clientToken: "live_c1c3e6a50bb280ff382ce2837c0",
       },
     };
 
