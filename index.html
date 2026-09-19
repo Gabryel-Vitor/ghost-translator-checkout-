@@ -12,33 +12,75 @@
     font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
     background: #0f0f14;
     color: #f4f4f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
     margin: 0;
-    text-align: center;
-    padding: 24px;
+    padding: 40px 20px 100px;
+    line-height: 1.6;
   }
-  .card { max-width: 380px; }
-  .logo { font-size: 28px; margin-bottom: 8px; }
-  h1 { font-size: 18px; margin: 0 0 20px; color: #a855f7; }
+  .container { max-width: 560px; margin: 0 auto; }
+  .logo { font-size: 40px; text-align: center; margin-bottom: 4px; }
+  h1 { font-size: 22px; color: #a855f7; margin: 0 0 6px; text-align: center; }
+  .subtitulo { text-align: center; color: #a1a1aa; font-size: 14px; margin-bottom: 32px; }
+
+  .card {
+    background: #17171f;
+    border: 1px solid #27272a;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 15px; color: #e4e4e7; margin: 0 0 12px; }
+  .card ul { margin: 0; padding-left: 20px; }
+  .card li { font-size: 14px; color: #d4d4d8; margin-bottom: 8px; }
+
+  .preco-card {
+    background: linear-gradient(135deg, #1e1030, #17171f);
+    border: 1px solid #a855f7;
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .preco-valor { font-size: 34px; font-weight: 700; color: #f4f4f5; }
+  .preco-periodo { font-size: 14px; color: #a1a1aa; margin-bottom: 4px; }
+  .preco-obs { font-size: 12px; color: #71717a; margin-top: 8px; }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: #a855f7;
+    color: #0f0f14;
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .btn:hover { background: #9333ea; }
+
   .spinner {
-    width: 32px; height: 32px;
+    width: 28px; height: 28px;
     border: 3px solid rgba(255,255,255,.15);
     border-top-color: #a855f7;
     border-radius: 50%;
     animation: girar .8s linear infinite;
-    margin: 0 auto 16px;
+    margin: 0 auto 12px;
   }
   @keyframes girar { to { transform: rotate(360deg); } }
-  #status { font-size: 14px; color: #a1a1aa; line-height: 1.5; }
+  #status { font-size: 14px; color: #a1a1aa; line-height: 1.5; text-align: center; }
   .erro { color: #f87171 !important; }
+  #checkoutBox { display: none; text-align: center; margin-bottom: 24px; }
+
   footer {
     position: fixed;
-    bottom: 16px;
+    bottom: 0;
     left: 0;
     right: 0;
+    background: #0f0f14;
+    border-top: 1px solid #27272a;
+    padding: 14px 16px;
     text-align: center;
     font-size: 12px;
     color: #71717a;
@@ -48,24 +90,55 @@
 </style>
 </head>
 <body>
-  <div class="card">
+  <div class="container">
     <div class="logo">👻</div>
     <h1>Ghost Translator Premium</h1>
-    <div class="spinner" id="spinner"></div>
-    <p id="status">Abrindo o checkout...</p>
+    <p class="subtitulo">Tradução em tempo real de páginas e textos, sem limite diário de palavras.</p>
+
+    <!-- Bloco visível pro checkout automático (só aparece quando vem da extensão) -->
+    <div id="checkoutBox">
+      <div class="spinner" id="spinner"></div>
+      <p id="status">Abrindo o checkout...</p>
+    </div>
+
+    <div class="card">
+      <h2>O que é o Ghost Translator</h2>
+      <ul>
+        <li>Traduz automaticamente o conteúdo de qualquer página web enquanto você navega</li>
+        <li>Traduz o texto que você digita, em tempo real, para responder e-mails, mensagens e comentários em outro idioma</li>
+        <li>Funciona direto no navegador, sem precisar copiar e colar em outro site</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>O que o Premium desbloqueia</h2>
+      <ul>
+        <li>Remove o limite diário de palavras traduzidas do plano gratuito</li>
+        <li>Tradução ilimitada, todos os dias, sem interrupção</li>
+        <li>Mesmo mecanismo de tradução do plano gratuito, sem restrição de uso</li>
+      </ul>
+    </div>
+
+    <div class="preco-card">
+      <div class="preco-periodo">Assinatura mensal</div>
+      <div class="preco-valor">US$ 4,99<span style="font-size:15px;color:#a1a1aa;">/mês</span></div>
+      <div class="preco-obs">Cobrança recorrente. Cancele quando quiser, sem multa.</div>
+    </div>
+
+    <button class="btn" id="btnAssinar" type="button">Assinar Ghost Translator Premium</button>
+    <p id="avisoSemUser" style="display:none; text-align:center; font-size:13px; color:#a1a1aa; margin-top:12px;">
+      Pra assinar, abra este link a partir do botão "Upgrade to Premium" dentro da extensão Ghost Translator — assim sua conta é vinculada automaticamente à assinatura.
+    </p>
   </div>
 
   <footer>
     <a href="./terms.html">Termos de Serviço</a> ·
-    <a href="https://sites.google.com/view/ghost-translator-privacy/home" target="_blank" rel="noopener">Privacidade</a> ·
+    <a href="./privacy.html">Privacidade</a> ·
     <a href="./refund-policy.html">Reembolso e Cancelamento</a>
   </footer>
 
   <script>
-    // ⚙️ AMBIENTE ATUAL: LIVE (produção). Confirmado que o Paddle já está
-    // com domínio aprovado, verificação de negócio feita, métodos de
-    // pagamento e payout settings configurados no painel live
-    // (vendors.paddle.com, sem "sandbox-").
+    // ⚙️ AMBIENTE ATUAL: LIVE (produção).
     var AMBIENTE = "live";
 
     var CONFIG = {
@@ -87,6 +160,9 @@
 
     var statusEl = document.getElementById("status");
     var spinnerEl = document.getElementById("spinner");
+    var checkoutBox = document.getElementById("checkoutBox");
+    var btnAssinar = document.getElementById("btnAssinar");
+    var avisoSemUser = document.getElementById("avisoSemUser");
 
     function mostrarErro(msg) {
       spinnerEl.style.display = "none";
@@ -94,36 +170,25 @@
       statusEl.className = "erro";
     }
 
-    if (!userId) {
-      mostrarErro("Link inválido: faltam informações da sua conta. Volte pra extensão Ghost Translator e tente de novo pelo botão \"Upgrade to Premium\".");
-    } else {
+    function abrirCheckout() {
+      checkoutBox.style.display = "block";
+      btnAssinar.style.display = "none";
+
       try {
         if (AMBIENTE === "sandbox") {
           Paddle.Environment.set("sandbox");
         }
-        // Se AMBIENTE === "live", não chama Environment.set — live é o
-        // padrão do Paddle.js quando nada é setado.
 
         Paddle.Initialize({ token: cfg.clientToken });
 
         Paddle.Checkout.open({
           items: [{ priceId: cfg.priceIdMensal, quantity: 1 }],
-          // Isso é o que faz o webhook saber a qual usuário essa assinatura
-          // pertence — a Paddle ecoa esse dado em todo evento futuro
-          // relacionado a essa assinatura.
           customData: { user_id: userId },
-          // Pré-preenche o campo de e-mail com o mesmo e-mail da conta
-          // logada na extensão (só conveniência — quem identifica o
-          // usuário de verdade é o customData acima, não isso).
           customer: email ? { email: email } : undefined,
           settings: {
             displayMode: "overlay",
             theme: "dark"
           },
-          // Avisa quando o pagamento é concluído — fecha a aba sozinha
-          // depois. A extensão já escuta quando essa aba fecha pra
-          // atualizar o status pra Premium, então isso dá o efeito de
-          // "voltar pra onde eu estava" sem precisar fazer nada manual.
           eventCallback: function (evento) {
             if (evento && evento.name === "checkout.completed") {
               spinnerEl.style.display = "none";
@@ -131,9 +196,6 @@
               statusEl.className = "";
               setTimeout(function () {
                 window.close();
-                // Se chegou até aqui, o navegador bloqueou o fechamento
-                // automático (acontece às vezes, depende de como a aba foi
-                // aberta) — troca a mensagem pra instrução manual.
                 setTimeout(function () {
                   statusEl.textContent = "✅ Pagamento confirmado! Pode fechar esta aba e voltar pra extensão.";
                 }, 500);
@@ -147,10 +209,17 @@
         mostrarErro("Não foi possível abrir o checkout: " + (e && e.message ? e.message : "erro desconhecido"));
       }
     }
+
+    if (userId) {
+      // Veio da extensão com os dados da conta — abre o checkout automaticamente.
+      abrirCheckout();
+    } else {
+      // Página aberta diretamente (ex: revisão do domínio, ou usuário curioso).
+      // Mostra o botão, mas ele só funciona de verdade vindo da extensão.
+      btnAssinar.addEventListener("click", function () {
+        avisoSemUser.style.display = "block";
+      });
+    }
   </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> f6286db52d21dc463238ca4d9727a6b2289d56b8
