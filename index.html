@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="Ltx7ETGzF0-3eF-U1wcHpoOWQg2vzjIWroqdOvpiI6g" />
-<title>Ghost Translator — Assinar Premium</title>
+<title data-pt="Ghost Translator — Assinar Premium" data-en="Ghost Translator — Subscribe to Premium">Ghost Translator — Subscribe to Premium</title>
+<script src="./lang.js"></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <style>
   * { box-sizing: border-box; }
@@ -93,15 +94,16 @@
   <div class="container">
     <div class="logo">👻</div>
     <h1>Ghost Translator Premium</h1>
-    <p class="subtitulo">Tradução em tempo real de páginas e textos, sem limite diário de palavras.</p>
+    <p class="subtitulo" data-lang="pt">Tradução em tempo real de páginas e textos, sem limite diário de palavras.</p>
+    <p class="subtitulo" data-lang="en">Real-time translation of web pages and text, with no daily word limit.</p>
 
     <!-- Bloco visível pro checkout automático (só aparece quando vem da extensão) -->
     <div id="checkoutBox">
       <div class="spinner" id="spinner"></div>
-      <p id="status">Abrindo o checkout...</p>
+      <p id="status">Opening checkout... / Abrindo o checkout...</p>
     </div>
 
-    <div class="card">
+    <div class="card" data-lang="pt">
       <h2>O que é o Ghost Translator</h2>
       <ul>
         <li>Traduz automaticamente o conteúdo de qualquer página web enquanto você navega</li>
@@ -110,7 +112,16 @@
       </ul>
     </div>
 
-    <div class="card">
+    <div class="card" data-lang="en">
+      <h2>What Ghost Translator is</h2>
+      <ul>
+        <li>Automatically translates the content of any web page as you browse</li>
+        <li>Translates the text you type, in real time, so you can reply to emails, messages and comments in another language</li>
+        <li>Works right in your browser, with no need to copy and paste into another site</li>
+      </ul>
+    </div>
+
+    <div class="card" data-lang="pt">
       <h2>O que o Premium desbloqueia</h2>
       <ul>
         <li>Remove o limite diário de palavras traduzidas do plano gratuito</li>
@@ -119,22 +130,40 @@
       </ul>
     </div>
 
-    <div class="preco-card">
+    <div class="card" data-lang="en">
+      <h2>What Premium unlocks</h2>
+      <ul>
+        <li>Removes the free plan's daily limit on translated words</li>
+        <li>Unlimited translation, every day, without interruption</li>
+        <li>Same translation engine as the free plan, with no usage restriction</li>
+      </ul>
+    </div>
+
+    <div class="preco-card" data-lang="pt">
       <div class="preco-periodo">Assinatura mensal</div>
       <div class="preco-valor">US$ 4,99<span style="font-size:15px;color:#a1a1aa;">/mês</span></div>
       <div class="preco-obs">Cobrança recorrente. Cancele quando quiser, sem multa.</div>
     </div>
 
-    <button class="btn" id="btnAssinar" type="button">Assinar Ghost Translator Premium</button>
+    <div class="preco-card" data-lang="en">
+      <div class="preco-periodo">Monthly subscription</div>
+      <div class="preco-valor">US$ 4.99<span style="font-size:15px;color:#a1a1aa;">/month</span></div>
+      <div class="preco-obs">Recurring billing. Cancel anytime, no penalty.</div>
+    </div>
+
+    <button class="btn" id="btnAssinar" type="button"><span data-lang="pt">Assinar Ghost Translator Premium</span><span data-lang="en">Subscribe to Ghost Translator Premium</span></button>
     <p id="avisoSemUser" style="display:none; text-align:center; font-size:13px; color:#a1a1aa; margin-top:12px;">
-      Pra assinar, abra este link a partir do botão "Upgrade to Premium" dentro da extensão Ghost Translator — assim sua conta é vinculada automaticamente à assinatura.
+      <span data-lang="pt">Pra assinar, abra este link a partir do botão "Upgrade to Premium" dentro da extensão Ghost Translator — assim sua conta é vinculada automaticamente à assinatura.</span><span data-lang="en">To subscribe, open this link from the "Upgrade to Premium" button inside the Ghost Translator extension — that way your account is linked to the subscription automatically.</span>
     </p>
   </div>
 
   <footer>
-    <a href="./terms.html">Termos de Serviço</a> ·
+    <span data-lang="pt"><a href="./terms.html">Termos de Serviço</a> ·
     <a href="./privacy.html">Privacidade</a> ·
-    <a href="./refund-policy.html">Reembolso e Cancelamento</a>
+    <a href="./refund-policy.html">Reembolso e Cancelamento</a></span>
+    <span data-lang="en"><a href="./terms.html">Terms of Service</a> ·
+    <a href="./privacy.html">Privacy</a> ·
+    <a href="./refund-policy.html">Refunds and Cancellation</a></span>
   </footer>
 
   <script>
@@ -192,23 +221,25 @@
           eventCallback: function (evento) {
             if (evento && evento.name === "checkout.completed") {
               spinnerEl.style.display = "none";
-              statusEl.textContent = "✅ Pagamento confirmado! Fechando esta aba...";
+              statusEl.textContent = gtTr("✅ Pagamento confirmado! Fechando esta aba...", "✅ Payment confirmed! Closing this tab...");
               statusEl.className = "";
               setTimeout(function () {
                 window.close();
                 setTimeout(function () {
-                  statusEl.textContent = "✅ Pagamento confirmado! Pode fechar esta aba e voltar pra extensão.";
+                  statusEl.textContent = gtTr("✅ Pagamento confirmado! Pode fechar esta aba e voltar pra extensão.", "✅ Payment confirmed! You can close this tab and go back to the extension.");
                 }, 500);
               }, 2500);
             }
           }
         });
 
-        statusEl.textContent = "Se o checkout não abrir sozinho, confira se o navegador não bloqueou um pop-up.";
+        statusEl.textContent = gtTr("Se o checkout não abrir sozinho, confira se o navegador não bloqueou um pop-up.", "If the checkout does not open on its own, check that your browser did not block a pop-up.");
       } catch (e) {
-        mostrarErro("Não foi possível abrir o checkout: " + (e && e.message ? e.message : "erro desconhecido"));
+        mostrarErro(gtTr("Não foi possível abrir o checkout: ", "Could not open the checkout: ") + (e && e.message ? e.message : gtTr("erro desconhecido", "unknown error")));
       }
     }
+
+    statusEl.textContent = gtTr("Abrindo o checkout...", "Opening checkout...");
 
     if (userId) {
       // Veio da extensão com os dados da conta — abre o checkout automaticamente.

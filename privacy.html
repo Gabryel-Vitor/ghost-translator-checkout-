@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Translator — Política de Privacidade</title>
+<title data-pt="Ghost Translator — Política de Privacidade" data-en="Ghost Translator — Privacy Policy">Ghost Translator — Privacy Policy</title>
+<script src="./lang.js"></script>
 <style>
   * { box-sizing: border-box; }
   body {
@@ -27,6 +28,7 @@
 </head>
 <body>
 <div class="container">
+<div data-lang="pt">
   <a class="voltar" href="./">← Voltar</a>
   <div class="logo">👻</div>
   <h1>Política de Privacidade — Ghost Translator</h1>
@@ -86,6 +88,68 @@
     &nbsp;·&nbsp;
     <a href="./refund-policy.html">Política de Reembolso e Cancelamento</a>
   </p>
+</div>
+<div data-lang="en">
+  <a class="voltar" href="./">← Back</a>
+  <div class="logo">👻</div>
+  <h1>Privacy Policy — Ghost Translator</h1>
+  <p class="atualizado">Last updated: July 2026</p>
+
+  <p>This policy describes how the Ghost Translator browser extension ("the Extension") collects, uses and protects information.</p>
+
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>Page text you choose to translate:</strong> when translation is active, the visible text of the page (and the text you type, if input translation is on) is sent to our translation server (Supabase Edge Functions) and/or to the public Google Translate service, only to generate the translation. We do not store this text permanently.</li>
+    <li><strong>Email and account identifier</strong>, only if you choose to sign in (with Google, through Supabase Auth), to sync your plan (Free/Premium) and your daily usage limits.</li>
+    <li><strong>Daily word count</strong>, stored locally in your browser and, for signed-in users, linked to your account to enforce the free plan limit.</li>
+    <li><strong>Extension preferences</strong> (target language, typing translation language, whether translation is on), stored locally in your browser.</li>
+  </ul>
+
+  <h2>What we do not collect</h2>
+  <ul>
+    <li>We never collect passwords (Google sign-in uses OAuth; the Extension never has access to your Google password).</li>
+    <li>We do not sell or share your data with third parties for advertising purposes.</li>
+    <li>We do not use the collected data to train AI models.</li>
+  </ul>
+
+  <h2>How data is used</h2>
+  <p>Data is used exclusively to:</p>
+  <ul>
+    <li>Perform the translation you request</li>
+    <li>Verify your subscription plan (Free/Premium) and enforce usage limits</li>
+    <li>Process payment and grant Premium access (via Paddle)</li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <ul>
+    <li><strong>Supabase</strong> (database, authentication, backend functions)</li>
+    <li><strong>Google Translate</strong> (free translation, when applicable)</li>
+    <li><strong>Paddle.com Market Limited</strong> (payment processing for the Premium subscription, acting as Merchant of Record)</li>
+  </ul>
+
+  <h2>Storage and retention</h2>
+  <ul>
+    <li>Preferences and usage counters are kept in your browser's local storage and can be erased at any time by removing the extension.</li>
+    <li>Account data (email, subscription status) is kept in our Supabase database until you request account deletion.</li>
+  </ul>
+
+  <h2>Your rights</h2>
+  <p>You may, at any time:</p>
+  <ul>
+    <li>Turn translation off and/or remove the extension</li>
+    <li>Request deletion of your account and associated data by contacting us at the email below</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:GabryelVitor157@gmail.com">GabryelVitor157@gmail.com</a></p>
+
+  <h2>Related documents</h2>
+  <p>
+    <a href="./terms.html">Terms of Service</a>
+    &nbsp;·&nbsp;
+    <a href="./refund-policy.html">Refund and Cancellation Policy</a>
+  </p>
+</div>
 </div>
 </body>
 </html>
